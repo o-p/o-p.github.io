@@ -7,10 +7,21 @@
     <!-- AMP HEAD 必要的第二個子元素 -->
     <script async src="https://cdn.ampproject.org/v0.js"></script>
     <title>THE TEMPLATE OF AMPs</title>
-    <!-- 指向一般版本的html (如果沒有, 則指向自己) -->
+    <!--
+        指向一般版本的html (通常是desktop版本, 如果沒有, 則指向自己)
+        如果有canonical版本, 其中的 <head> 記得加上: <link rel="amphtml" href="{指回此amp 版本}" />
+    -->
     <link rel="canonical" href="https://gist.github.com/o-p" />
     <!-- initial-scale 建議設定為1, 其他屬性是基本要有的 -->
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+
+    <!--
+        如果希望網頁可以被其他第三方平台顯示
+            - 記得確認robots.txt 的設定, 此檔案可以被爬到
+            - 不要加上 <meta name="robots" content="noindex" />
+            - Response Header 不要有 X-Robots-Tag: noindex 
+    -->
+    
     <!--
         筆記: https://gist.github.com/o-p/558b3bb2e8e5ae2d26939ada4893b94c
         可用內容參考:
@@ -45,15 +56,33 @@
     <noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
 
     <!-- 
-        stylesheet 只能存在 <head> 中且唯一, 除了 font, 不可以使用<link rel="stylesheet">
-        不可使用inline-style
+        stylesheet 只能存在 <head> 中且唯一,
+        禁止使用:
+            1. Inline style attributes
+            2. !important
+            3. 除了web fonts, 不可使用<link rel="stylesheet">
+            4. * - 減低效能, 並且可能用來規避一些amp 規則
+            5. :not() - 可以用來造成類似 * 的效果
+            6. amp- 開頭的 Pseudo-selectors, pseudo-classes, and pseudo-elements
+            7. -amp- class and i-amp- tag names
+            8. behavior, -moz-binding - 安全性問題
+            9. filter - 效能問題
+
+        限制使用:
+            1. transition - 只准許使用支援GPU 硬體加速的: opacity, transform(可能包含prefix)
+            2. @keyframes - 同上
     -->
     <style amp-custom>
         body { backgrounod-color: #ABC; }
     </style>
+    <!--
+        一些amp components:
+        https://ampbyexample.com/components/amp-carousel/
+    -->
+    <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
   </head>
   <body>
-    <h1>THE TEMPLATE</h1>
+    <h1>AMP ⚡ TEMPLATE</h1>
     <amp-img
         src="img/sample-01.jpg"
         srcset="img/sample-01.jpg 960w,
@@ -64,5 +93,11 @@
         alt="SAMPLE OF RESPONSIVE IMAGE">
         <noscript><img src="welcome-fallback.jpg" alt="因為瀏覽器不支援JavaScript 所以顯示這張圖" /></noscript>
     </amp-img>
+
+    <!-- example of carousel component -->
+    <amp-carousel width="720" height="480" layout="responsive" type="slides">
+      <amp-img src="img/sample-01.jpg" width="960" height="1706" layout="responsive" alt="最可愛的小女孩 part1"></amp-img>
+      <amp-img src="img/sample-02.jpg" width="960" height="1706" layout="responsive" alt="最可愛的小女孩 part2"></amp-img>
+    </amp-carousel>
   </body>
 </html>
