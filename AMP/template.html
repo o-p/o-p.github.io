@@ -6,15 +6,16 @@
     <meta charset="utf-8">
     <!-- AMP HEAD 必要的第二個子元素 -->
     <script async src="https://cdn.ampproject.org/v0.js"></script>
-    <title>Hello, AMPs</title>
+    <title>THE TEMPLATE OF AMPs</title>
     <!-- 指向一般版本的html (如果沒有, 則指向自己) -->
     <link rel="canonical" href="https://gist.github.com/o-p" />
     <!-- initial-scale 建議設定為1, 其他屬性是基本要有的 -->
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <!-- 分享與搜尋用, 參考: http://schema.org/CreativeWork -->
     <script type="application/ld+json">
       {
         "@context": "http://schema.org",
-        "@type": "NewsArticle",
+        "@type": "WebPage",
         "headline": "Open-source framework for publishing content",
         "datePublished": "2015-10-07T12:02:41Z",
         "image": [
@@ -24,8 +25,26 @@
     </script>
     <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style>
     <noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+
+    <!-- 
+        stylesheet 只能存在 <head> 中且唯一, 除了 font, 不可以使用<link rel="stylesheet">
+        不可使用inline-style
+    -->
+    <style amp-custom>
+        body { backgrounod-color: #ABC; }
+    </style>
   </head>
   <body>
     <h1>THE TEMPLATE</h1>
+    <amp-img
+        src="/img/narrow.jpg"
+        srcset="/img/wide.jpg 640w,
+               /img/narrow.jpg 320w"
+        width="1698"
+        height="2911"
+        layout="responsive"
+        alt="SAMPLE OF RESPONSIVE IMAGE">
+        <noscript><img src="welcome-fallback.jpg" alt="因為瀏覽器不支援JavaScript 所以顯示這張圖" /></noscript>
+    </amp-img>
   </body>
 </html>
