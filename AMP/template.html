@@ -74,6 +74,21 @@
     -->
     <style amp-custom>
         body { backgrounod-color: #ABC; }
+        .hint { position: relative; }
+        .hidden-code {
+            position: absolute;
+            display: none;
+            background-color: rgba(0, 121, 176, 0.5);
+            color: #fff;
+            padding: 0.3em;
+            border-radius: 3px;
+            white-space: nowrap;
+        }
+        .hint:hover .hidden-code {
+            display: inline-block;
+            bottom: 110%;
+            left: 0;
+        }
     </style>
     <!--
         一些amp components:
@@ -83,6 +98,16 @@
   </head>
   <body>
     <h1>AMP ⚡ TEMPLATE</h1>
+    <p>
+        <span>網址後加上</span>
+        <a href="#development=1" class="hint">
+            #development=1
+            <code class="hidden-code">
+                $ python -m SimpleHttpServer
+            </code>
+        </a>
+        <span>會在DevTool console中顯示amp格式驗證結果</span>
+    </p>
     <amp-img
         src="img/sample-01.jpg"
         srcset="img/sample-01.jpg 960w,
