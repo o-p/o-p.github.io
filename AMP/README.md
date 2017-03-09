@@ -10,4 +10,17 @@
     - 每次可查詢 50 筆
     - 優先使用 `cdnAmpUrl`
     - 目前看來, CDN版本只是將html minify, 沒有更多的處理 (例如將amp-img 換成不同元件)
+    - example json response:
+        ```json
+{
+     "ampUrls": [
+          {
+               "originalUrl": "http://o-p.github.io/AMP/template.html",
+               "ampUrl": "http://o-p.github.io/AMP/template.html",
+               "cdnAmpUrl": "https://o--p-github-io.cdn.ampproject.org/c/o-p.github.io/AMP/template.html"
+          }
+     ]
+}
+ 
+        ```
     
